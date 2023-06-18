@@ -2,20 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class cardInfo : MonoBehaviour
+public class Card : MonoBehaviour
 {
-    public int id;
-    public string cardName, description;
-    public string action;
-    public Sprite cardImage;
+    [SerializeField] public CardManager tileManager;
+    [SerializeField] public GameManager gameManager;
+    public FloodCardInfo cardInfo;
+    public SpriteRenderer spriteRenderer;
 
-    //This stores all the info of the cards,, it works together with the Database and the SO.
-    public cardInfo(int Id, string CardName, string Description, string Action, Sprite CardImage)
+    public void Start()
     {
-        id = Id;
-        cardName = CardName;
-        description = Description;
-        action = Action;
-        cardImage = CardImage;
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 }

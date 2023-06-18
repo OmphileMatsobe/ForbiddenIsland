@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e17442dc77ca58a41bfb52e19fdaf843, type: 3}
+  m_Name: CaveOfEmbers
+  m_EditorClassIdentifier: 
+  Default: {fileID: 21300000, guid: 1514fb247cf62ec4f84f2e379eb74120, type: 3}
+  Flooded: {fileID: 21300000, guid: 26d81070e67448542a8e78871a374e71, type: 3}
+  Sunk: {fileID: 21300000, guid: e59b3585bda49834e985280aa0a4e20b, type: 3}
+  currentState: 0
+  currentTreasure: 1
+  playerPieceStart: 0
+  tileName: CaveOfEmbers
