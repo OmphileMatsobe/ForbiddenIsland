@@ -6,14 +6,18 @@ public class Tile : MonoBehaviour
     [SerializeField] public TileManager tileManager;
     [SerializeField] public GameManager gameManager;
     public TileInfo tileInfo;
-    public SpriteRenderer spriteRenderer;
+    public SpriteRenderer spriteRenderer, childSpriteRenderer;
     public TileInfo.State CurrentState;
     public TileInfo.treasureOnTile TreasureOnTile;
     public TileInfo.PlayerPieceStart PlayerPieceStart;
+    GameObject childGameObject;
+    public string tileName;
 
     public void Start()
     {
+        childGameObject = this.gameObject.transform.GetChild(0).gameObject;
         spriteRenderer = GetComponent<SpriteRenderer>();
+        childSpriteRenderer = childGameObject.GetComponent<SpriteRenderer>();
         CurrentState = TileInfo.State.Default;
         TreasureOnTile = tileInfo.currentTreasure;
         gameObject.name = tileInfo.tileName;
@@ -37,6 +41,8 @@ public class Tile : MonoBehaviour
                     break;
             }
         }
+
+        tileName = tileInfo.tileName.ToString();
+        childSpriteRenderer.sprite = tileInfo.Pawn;
     }
 }
-

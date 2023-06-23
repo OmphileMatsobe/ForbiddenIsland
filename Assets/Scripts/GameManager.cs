@@ -8,6 +8,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TileManager tileManager;
     [SerializeField] private Tile tileStart;
     [SerializeField] private CardManager cardManager;
+
+    private void Start()
+    {
+        StartButtonClicked();
+    }
     public void StartButtonClicked()
     {
         tileManager.DeleteTiles();
@@ -15,6 +20,7 @@ public class GameManager : MonoBehaviour
         tileManager.DisplayTiles();
         cardManager.GenerateFloodDeck();
         cardManager.GenerateTreasureDeck();
+        
     }
 
     // Update is called once per frame

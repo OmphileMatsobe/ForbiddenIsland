@@ -1,8 +1,8 @@
-using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.UIElements;
 using Random = UnityEngine.Random;
 
 public class TileManager : MonoBehaviour
@@ -19,6 +19,11 @@ public class TileManager : MonoBehaviour
     public List<Tile> tiles;
     private float row, column;
 
+
+    void Start()
+    {
+        ShuffleTileList();
+    }
     public void ShuffleTileList()
     {
         int numberOfTiles = deck.Count;
@@ -98,6 +103,46 @@ public class TileManager : MonoBehaviour
         foreach (var tile in deckTiles)
         {
             Destroy(tile.gameObject);
+        }
+    }
+
+
+    public void Update()
+    {
+        checkMove();
+    }
+
+    public void checkMove()
+    {
+        bool leftButtonPress = Input.GetMouseButton(0);
+        //mouse position on the screen and the scene world position.
+
+        Vector2 mousePosition = Input.mousePosition;
+        Vector2 mouseWorldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
+
+        if (leftButtonPress)
+        {
+
+            Debug.Log("Left button pressed");
+
+            for (int i = 0; i < deckTiles.Count; i++)
+            {
+                deckTiles[i].transform.GetChild(1).gameObject.SetActive(false);
+
+                //checks if the mouseWorld position is within borders of the tile collision component.
+                if (deckTiles[i].GetComponent<Collider2D>().OverlapPoint(mouseWorldPosition))
+                {
+                    deckTiles[i].transform.GetChild(1).gameObject.SetActive(true);
+                    Debug.Log("Is within the radius of the paddle. Object should move");
+
+                }
+            }
+        }
+
+
+        else
+        {
+            Debug.Log("Left button not pressed.");
         }
     }
 }
