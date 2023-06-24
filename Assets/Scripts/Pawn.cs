@@ -6,12 +6,12 @@ public class Pawn : MonoBehaviour
     [SerializeField] GameObject pawnPiece;
     [SerializeField] GameObject[,] pawnPos = new GameObject[6, 6];
     [SerializeField] GameObject button;
-    public GameObject playerOne, playerTwo;
-
-    public TileInfo Tile;
+    [SerializeField] private TileManager tile;
+    public static GameObject playerOne, playerTwo;
+    public static bool pawnExist = false;
     public Vector2 mouseWorldPosition;
     public string player;
-    GameObject pawn;
+    public static GameObject pawn;
     public string typeOne, typeTwo;
 
     bool gameOver;
@@ -33,6 +33,7 @@ public class Pawn : MonoBehaviour
 
         typeOne = "Engineer";
         typeTwo = "Pilot";
+        pawnExist = false;
     }
 
     //This should be renamed and called within the OnCLick function of the card.
@@ -41,9 +42,9 @@ public class Pawn : MonoBehaviour
     {
         playerOne = makePawn("PlayerOne", typeOne, fetchOneX, fetchOneY);
         playerTwo = makePawn("PlayerTwo", typeTwo, fetchTwoX, fetchTwoY);
-
+        pawnExist = true;
         button.gameObject.SetActive(false);
-
+        
 
     }
 
@@ -122,8 +123,6 @@ public class Pawn : MonoBehaviour
             Debug.Log(fetchTwoX + "," + fetchTwoY);
         }
     }
-
-
 
     // Update is called once per frame
     void Update()

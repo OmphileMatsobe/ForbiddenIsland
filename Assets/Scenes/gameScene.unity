@@ -1302,9 +1302,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pawnPiece: {fileID: 193304704529414521, guid: b4cfc3da5e74b874c86e23cbbf4e4306, type: 3}
   button: {fileID: 413507557}
-  playerOne: {fileID: 0}
-  playerTwo: {fileID: 0}
-  Tile: {fileID: 0}
+  tile: {fileID: 0}
   mouseWorldPosition: {x: 0, y: 0}
   player: 
   typeOne: 
@@ -1435,7 +1433,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 672910419}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 766469982}
+        m_TargetAssemblyTypeName: TileManager, Assembly-CSharp
+        m_MethodName: MovePawn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &672910419
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1532,6 +1542,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e053eddd9f0092847a1fd2500baa3e46, type: 2}
   gameManager: {fileID: 300368099}
   cam: {fileID: 519420032}
+  speed: 0
   tiles: []
 --- !u!4 &766469983
 Transform:
