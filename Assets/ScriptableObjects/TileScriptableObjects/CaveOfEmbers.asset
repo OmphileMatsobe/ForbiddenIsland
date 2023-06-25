@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Default: {fileID: 21300000, guid: 1514fb247cf62ec4f84f2e379eb74120, type: 3}
   Flooded: {fileID: 21300000, guid: 26d81070e67448542a8e78871a374e71, type: 3}
-  Sunk: {fileID: 21300000, guid: e59b3585bda49834e985280aa0a4e20b, type: 3}
+  Sunk: {fileID: 21300000, guid: 4e5089580400e5a45b3c73a4bdd9aa24, type: 3}
   currentState: 0
   currentTreasure: 1
   playerPieceStart: 0

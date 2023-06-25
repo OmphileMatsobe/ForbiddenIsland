@@ -8,5 +8,5 @@ public class TreasureCardInfo : ScriptableObject
 {
     public Sprite Default;
     public string cardName;
-
+    internal object transform;
 }
