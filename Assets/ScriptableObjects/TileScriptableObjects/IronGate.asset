@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e17442dc77ca58a41bfb52e19fdaf843, type: 3}
+  m_Name: IronGate
+  m_EditorClassIdentifier: 
+  Default: {fileID: 21300000, guid: 9e56e4c4477d4364199f66f1ecf1f9b0, type: 3}
+  Flooded: {fileID: 21300000, guid: 345a4b882a7fd0a44b73cc9fe8d3325e, type: 3}
+  Sunk: {fileID: 21300000, guid: 4e5089580400e5a45b3c73a4bdd9aa24, type: 3}
+  currentState: 0
+  currentTreasure: 0
+  playerPieceStart: 2
+  tileName: IronGate
