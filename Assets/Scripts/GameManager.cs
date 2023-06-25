@@ -7,12 +7,20 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private TileManager tileManager;
     [SerializeField] private CardManager cardManager;
+<<<<<<< HEAD
     [SerializeField] private PlayerManager playerManager;
 
     public int playerTurn = 1;
     bool gameStarted = false;
     bool setUpCompleted = false;
 
+=======
+
+    private void Start()
+    {
+        StartButtonClicked();
+    }
+>>>>>>> fd493787c51df0b83ab9ef07d30d183c97bc6047
     public void StartButtonClicked()
     {
         tileManager.DeleteTiles();
@@ -21,6 +29,7 @@ public class GameManager : MonoBehaviour
         tileManager.DisplayTiles();
         cardManager.GenerateFloodDeck();
         cardManager.GenerateTreasureDeck();
+<<<<<<< HEAD
         gameStarted = true;
     }
     
@@ -29,6 +38,9 @@ public class GameManager : MonoBehaviour
         cardManager.SixTilesFlooded();
         cardManager.TreasureHandout();
         setUpCompleted = true;
+=======
+        
+>>>>>>> fd493787c51df0b83ab9ef07d30d183c97bc6047
     }
 
     // Update is called once per frame

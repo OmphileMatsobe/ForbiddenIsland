@@ -9,6 +9,8 @@ public class TileInfo : ScriptableObject
     public Sprite Default;
     public Sprite Flooded;
     public Sprite Sunk;
+    public bool isPawnSpawn;
+    public Sprite Pawn;
     public enum State
     {
         Default, Flooded, Sunk
@@ -27,5 +29,4 @@ public class TileInfo : ScriptableObject
     public treasureOnTile currentTreasure;
     public PlayerPieceStart playerPieceStart;
     public string tileName;
-
 }
