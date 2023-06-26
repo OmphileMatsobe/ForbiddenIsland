@@ -26,6 +26,7 @@ public class Card : MonoBehaviour
     {
 
             cardManager.RemoveFromHand(this, gameManager.playerTurn); // Pass the clickedCard itself
+            gameManager.UpdateHand(this , gameManager.playerTurn);
             gameObject.SetActive(false);
             Debug.Log("Pressed");
         

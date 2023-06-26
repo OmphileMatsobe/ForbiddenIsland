@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
@@ -8,7 +7,7 @@ using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
-public class TileManager : MonoBehaviour
+public class TileManage : MonoBehaviour
 {
     [FormerlySerializedAs("Prefab")]
     [SerializeField]
@@ -303,7 +302,6 @@ public class TileManager : MonoBehaviour
                 if (deckTiles[i].GetComponent<Collider2D>().OverlapPoint(mouseWorldPosition))
                 {
                     MovePawn(i, player, typeAdv);
-                    
 
                     deckTiles[i].transform.GetChild(1).gameObject.SetActive(true);
                     Debug.Log("Is within the radius of the paddle. Object should move");
@@ -463,70 +461,5 @@ public class TileManager : MonoBehaviour
 
     }
 
-    /*  The following is most, if not all,  the fucntions related to the shore up action
-     *
-     *  shoreUp: checks if the tiles are adjacent to the pawn and shores the chosen tile up
-     *  
-     *  
-     *  Return: None
-     */
 
-    public void shoreEnable()
-    {
-        gameManager.action = 3;
-    }
-
-    public void shoreUp(string player, string cardName)
-    {
-
-        if (player == "One")
-        {
-            objectPlate = obj.transform.position;
-        }
-        if (player == "Two")
-        {
-            objectPlate = objTwo.transform.position;
-        }
-
-        for (int i = 0; deckTiles.Count > 0; i++)
-        {
-            
-                if (
-                     ((deckTiles[i].transform.position.x - objectPlate.x == -1.5f) && (deckTiles[i].transform.position.y == objectPlate.y) ||
-                     (deckTiles[i].transform.position.x - objectPlate.x == 1.5f)) && (deckTiles[i].transform.position.y == objectPlate.y)
-                     ||
-                     ((deckTiles[i].transform.position.y - objectPlate.y == -1.5f) && (deckTiles[i].transform.position.x == objectPlate.x) ||
-                     (deckTiles[i].transform.position.y - objectPlate.y == 1.5f)) && (deckTiles[i].transform.position.x == objectPlate.x)
-                  )
-                {
-                    if (deckTiles[i].CurrentState == TileInfo.State.Flooded)
-                    {
-                        deckTiles[i].CurrentState = TileInfo.State.Default;
-                        gameManager.action = 10;
-                    }
-                    else if (deckTiles[i].CurrentState == TileInfo.State.Sunk || deckTiles[i].CurrentState == TileInfo.State.Default)
-                    {
-                        break;
-                    }
-                }
-            
-
-            if (cardName == "Explorer")
-            {
-                if (
-                 ((deckTiles[i].transform.position.x - objectPlate.x == -1.5f) || (deckTiles[i].transform.position.x - objectPlate.x == 1.5f))
-                &&
-                 ((deckTiles[i].transform.position.y - objectPlate.y == -1.5f) || (deckTiles[i].transform.position.y - objectPlate.y == 1.5f))
-                 )
-                {
-                    if (deckTiles[i].CurrentState == TileInfo.State.Flooded)
-                    {
-                        deckTiles[i].CurrentState = TileInfo.State.Default;
-                        gameManager.action = 10;
-
-                    }
-                }
-            }
-        }
-    }
 }
