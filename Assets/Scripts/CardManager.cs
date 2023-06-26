@@ -17,6 +17,7 @@ public class CardManager : MonoBehaviour
     public List<Card> player2Hand = new List<Card>();
 
     //[SerializeField] private Card cardPrefab;
+
     [SerializeField] TileManager tileManager;
     [SerializeField] GameManager gameManager;
     public CardFlip cardFlip;
@@ -27,6 +28,7 @@ public class CardManager : MonoBehaviour
     public Card cardPrefab;
     public Canvas handLimitCanvas;
     public int waterLevelCounter = 2;
+    //public bool ableToPassTreasure = false;
 
     public void GenerateTreasureDeck()
     {
@@ -95,6 +97,9 @@ public class CardManager : MonoBehaviour
                 treasureDeck.Remove(treasureDeck[treasureDeck.Count - 1]);
 
                 treasureDiscard.Add(treasureDeck[treasureDeck.Count - 1]);
+
+                //treasureDiscard.Add(new Card(treasureDeck[treasureDeck.Count - 1]));
+
                 //var currentCard = Instantiate(cardPrefab, new Vector3(0, 0, 0), quaternion.identity);
                 //currentCard.cardInfo = treasureDeck[treasureDeck.Count - 1];
             }
@@ -261,26 +266,48 @@ public class CardManager : MonoBehaviour
 
     public void RemoveFromHand(Card clickedCard, int player, bool canClick)
     {
-        if(canClick)
+        if (canClick)
         {
-            treasureDiscard.Add(clickedCard.cardInfo);
             if (player == 1)
             {
+                player1Hand.Remove(clickedCard);
+            }
+            else if (player == 2)
+            {
+                player2Hand.Remove(clickedCard);
+            }
 
+            treasureDiscard.Add(clickedCard.cardInfo);
+            gameManager.UpdateHand(clickedCard, player);
+        }
+        else
+        {
+            // Handle the case when canClick is false, if needed
+        }
+    }
+
+    public void PassTreasure(Card clickedCard, int player, bool canPass)
+    {
+        if (canPass)
+        {
+            //Card card = new Card(clickedCard.cardInfo); // Convert TreasureCardInfo to Card
+            if (player == 1)
+            {
+                player2Hand.Add(clickedCard);
                 player1Hand.Remove(clickedCard);
                 gameManager.UpdateHand(clickedCard, player);
             }
             else if (player == 2)
             {
-
+                player1Hand.Add(clickedCard);
                 player2Hand.Remove(clickedCard);
                 gameManager.UpdateHand(clickedCard, player);
             }
         }
-        else
-        {
-
-        }
     }
+
+
+
+
 }
 

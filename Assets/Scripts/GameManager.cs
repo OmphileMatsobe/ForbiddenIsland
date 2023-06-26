@@ -16,9 +16,11 @@ public class GameManager : MonoBehaviour
     public Canvas gameCanvas;
     public bool handLimit = false;
     public bool keysActive = true;
+    public bool ableToPassTreasure = false;
+    int countToRemove = 5;
 
-    public GameObject player1;
-    public GameObject player2;
+    //public GameObject player1;
+    //public GameObject player2;
 
     public int playerTurn = 1;
     bool gameStarted = false;
@@ -52,11 +54,24 @@ public class GameManager : MonoBehaviour
         setUpCompleted = true;
     }
 
+    public void captureTreasure()
+    {
+
+    }
     public void UpdateHand(Card clickedCard, int player)
     {
-        cardManager.treasureDiscard.Add(clickedCard.cardInfo);
-        cardManager.player1Hand.Remove(clickedCard);
+
         Destroy(clickedCard.gameObject);
+
+        cardManager.treasureDiscard.Add(clickedCard.cardInfo);
+        int startIndex = cardManager.treasureDiscard.Count - countToRemove;
+
+        if (startIndex >= 0)
+        {
+            cardManager.treasureDiscard.RemoveRange(startIndex, countToRemove);
+        }
+
+
 
         if (player == 1)
         {
@@ -167,7 +182,6 @@ public class GameManager : MonoBehaviour
                         cardManager.DrawTreasureCard(1);
                         cardManager.DrawTreasureCard(1);
                         playerTurn = 2;
-                        
                     }
                     else
                     {
@@ -200,11 +214,27 @@ public class GameManager : MonoBehaviour
         else
         {
             keysActive = true;
-            gameCanvas.gameObject.SetActive(true);
+            //gameCanvas.gameObject.SetActive(true);
             handLimit = false;
             handLimitCanvas.gameObject.SetActive(false);
         }
+
+        if(Pawn.pawnExist == true)
+        {
+            if (GameObject.Find("PlayerOne").transform.position == GameObject.Find("PlayerTwo").transform.position)
+            {
+                ableToPassTreasure = true;
+                Debug.Log("able to pass");
+            }
+            else
+            {
+                ableToPassTreasure = false;
+            }
+        }
+        
     }
+
+
 
     /*
      * 

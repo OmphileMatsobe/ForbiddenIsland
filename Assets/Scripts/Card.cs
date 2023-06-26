@@ -20,6 +20,7 @@ public class Card : MonoBehaviour
     public void Update()
     {
         spriteRenderer.sprite = cardInfo.Default;
+       
     }
 
     private void OnMouseDown()
@@ -31,12 +32,19 @@ public class Card : MonoBehaviour
             gameManager.UpdateHand(this, 2);
             gameManager.UpdateHand(this, 1);
             gameObject.SetActive(false);
-            Debug.Log("Pressed");
+            Debug.Log("handlimit");
+        }
+        /*else if(gameManager.ableToPassTreasure == true && gameManager.handLimit == false)
+        {
+            
+            cardManager.PassTreasure(this, gameManager.playerTurn, true);
+            gameManager.UpdateHand(this, 2);
+            gameManager.UpdateHand(this, 1);
         }
         else
         {
 
-        }
+        }*/
         
     }
 

@@ -119,14 +119,14 @@ public class Pawn : MonoBehaviour
             assignCards(typeOne);
             fetchOneX = positionX;
             fetchOneY = positionY;
-            Debug.Log(fetchOneX + "," + fetchOneY);
+            Debug.Log( fetchOneX + "," + fetchOneY);
         }
         else if (player == "two")
         {
             assignCards(typeTwo);
             fetchTwoX = positionX;
             fetchTwoY = positionY;
-            Debug.Log(fetchTwoX + "," + fetchTwoY);
+            Debug.Log( fetchTwoX + "," + fetchTwoY);
         }
     }
 

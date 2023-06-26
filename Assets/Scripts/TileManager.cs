@@ -18,6 +18,7 @@ public class TileManager : MonoBehaviour
     [SerializeField] private List<TileInfo> deck = new List<TileInfo>();
     [SerializeField] private GameManager gameManager;
     [SerializeField] private Transform cam;
+    public CardManager cardManager;
 
     //All var related to the Pawn and the gridMarker and the Pawn-Tile movement relationship
     [SerializeField] Button Move;
@@ -32,6 +33,8 @@ public class TileManager : MonoBehaviour
     public adventureCards advCards;
     Vector2 move;
     Vector2 objectPlate = new Vector2(0, 0);
+
+    public Button giveTreasureButton;
 
     public List<Tile> tiles;
     private float row, column;
@@ -118,6 +121,8 @@ public class TileManager : MonoBehaviour
         }
     }
 
+    
+
     /*
      *  changeColor - changes the gridMarker color
      *  gridPlateIndicate - checks which grid/Tile the pawn can move to
@@ -196,8 +201,6 @@ public class TileManager : MonoBehaviour
         {
             deckTiles[i].transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().color = Color.black;
         }
-
-
     }
     //This controls all the grid indicators for all the movements including the special movements
 
@@ -276,7 +279,6 @@ public class TileManager : MonoBehaviour
         }
     }
 
-
     //Checks if the pawn card move to a tile
 
     public void checkMove(bool state)
@@ -351,7 +353,6 @@ public class TileManager : MonoBehaviour
                 }
             }
 
-
             pawnOne = advCards.type;
             pawnTwo = advCards.typeTwo;
 
@@ -375,14 +376,10 @@ public class TileManager : MonoBehaviour
         {
             Debug.Log("Left button not pressed.");
         }
-
-
     }
 
     public void MovePawn(int i, string player, string cardName)
     {
-
-
 
         if (player == "One")
         {
@@ -393,41 +390,76 @@ public class TileManager : MonoBehaviour
             objectPlate = objTwo.transform.position;
         }
 
-        if (
-            ((deckTiles[i].transform.position.x - objectPlate.x == -1.5f) && (deckTiles[i].transform.position.y == objectPlate.y) ||
-             (deckTiles[i].transform.position.x - objectPlate.x == 1.5f)) && (deckTiles[i].transform.position.y == objectPlate.y)
-            ||
-             ((deckTiles[i].transform.position.y - objectPlate.y == -1.5f) && (deckTiles[i].transform.position.x == objectPlate.x) ||
-             (deckTiles[i].transform.position.y - objectPlate.y == 1.5f)) && (deckTiles[i].transform.position.x == objectPlate.x)
-            )
-        {
-
-
-            pawnMove(i);
-
-        }
-
-        else
-        {
-            x = 0;
-            Debug.Log("isNotMovable");
-        }
-
-        if (cardName == "Explorer")
+         if (deckTiles[i].CurrentState != TileInfo.State.Sunk)
         {
             if (
-             ((deckTiles[i].transform.position.x - objectPlate.x == -1.5f) || (deckTiles[i].transform.position.x - objectPlate.x == 1.5f))
-            &&
-             ((deckTiles[i].transform.position.y - objectPlate.y == -1.5f) || (deckTiles[i].transform.position.y - objectPlate.y == 1.5f))
-             )
+                ((deckTiles[i].transform.position.x - objectPlate.x == -1.5f) && (deckTiles[i].transform.position.y == objectPlate.y) ||
+                 (deckTiles[i].transform.position.x - objectPlate.x == 1.5f)) && (deckTiles[i].transform.position.y == objectPlate.y)
+                ||
+                 ((deckTiles[i].transform.position.y - objectPlate.y == -1.5f) && (deckTiles[i].transform.position.x == objectPlate.x) ||
+                 (deckTiles[i].transform.position.y - objectPlate.y == 1.5f)) && (deckTiles[i].transform.position.x == objectPlate.x)
+
+                )
             {
+
+
                 pawnMove(i);
+
+            }
+
+            else if (cardName == "Explorer")
+            {
+                if (
+                 ((deckTiles[i].transform.position.x - objectPlate.x == -1.5f) || (deckTiles[i].transform.position.x - objectPlate.x == 1.5f))
+                &&
+                 ((deckTiles[i].transform.position.y - objectPlate.y == -1.5f) || (deckTiles[i].transform.position.y - objectPlate.y == 1.5f))
+
+                 )
+                {
+                    pawnMove(i);
+                }
+            }
+
+            else if (cardName == "Pilot" &&
+                (deckTiles[i].transform.position.y != objectPlate.y && deckTiles[i].transform.position.x != objectPlate.x))
+            {
+
+                pawnMove(i);
+
+            }
+
+            else if (cardName == "Navigator")
+            {
+                if (
+                      ((deckTiles[i].transform.position.x - objectPlate.x == -1.5f) || (deckTiles[i].transform.position.x - objectPlate.x == 1.5f))
+                      &&
+                      ((deckTiles[i].transform.position.y - objectPlate.y == -1.5f) || (deckTiles[i].transform.position.y - objectPlate.y == 1.5f))
+
+                      ||
+
+                       ((deckTiles[i].transform.position.x - objectPlate.x == -1.5f) && (deckTiles[i].transform.position.y == objectPlate.y) ||
+                       (deckTiles[i].transform.position.x - objectPlate.x == 1.5f)) && (deckTiles[i].transform.position.y == objectPlate.y)
+                       ||
+                       ((deckTiles[i].transform.position.y - objectPlate.y == -1.5f) && (deckTiles[i].transform.position.x == objectPlate.x) ||
+                      (deckTiles[i].transform.position.y - objectPlate.y == 1.5f)) && (deckTiles[i].transform.position.x == objectPlate.x)
+
+                )
+                {
+                    pawnMove(i);
+                }
+            }
+
+            else
+            {
+                x = 0;
+                Debug.Log("isNotMovable");
             }
         }
 
-
-
-
+         else if (cardName != "Diver" && deckTiles[i].CurrentState == TileInfo.State.Sunk)
+        {
+            deckTiles[i].transform.GetChild(1).gameObject.SetActive(false);
+        }
     }
 
     private void pawnMove(int i)
@@ -456,11 +488,6 @@ public class TileManager : MonoBehaviour
             gameManager.actionCounter++;
             Move.interactable = false;
         }
-
-
-
-
-
     }
 
     /*  The following is most, if not all,  the fucntions related to the shore up action
@@ -483,14 +510,14 @@ public class TileManager : MonoBehaviour
         {
             objectPlate = obj.transform.position;
         }
+
         if (player == "Two")
         {
             objectPlate = objTwo.transform.position;
         }
 
         for (int i = 0; deckTiles.Count > 0; i++)
-        {
-            
+        { 
                 if (
                      ((deckTiles[i].transform.position.x - objectPlate.x == -1.5f) && (deckTiles[i].transform.position.y == objectPlate.y) ||
                      (deckTiles[i].transform.position.x - objectPlate.x == 1.5f)) && (deckTiles[i].transform.position.y == objectPlate.y)
