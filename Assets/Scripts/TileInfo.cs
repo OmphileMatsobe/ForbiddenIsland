@@ -9,6 +9,7 @@ public class TileInfo : ScriptableObject
     public Sprite Default;
     public Sprite Flooded;
     public Sprite Sunk;
+    public Sprite Pawn;
     public enum State
     {
         Default, Flooded, Sunk

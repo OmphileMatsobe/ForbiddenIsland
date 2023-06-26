@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: d7d68966ed11b61408d75af9923c1306
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - pawnManager: {instanceID: 0}
+  - cardBorder: {instanceID: 0}
+  - Engineer: {fileID: 21300000, guid: fdad57e91aedffd4c8948d47520c3f1d, type: 3}
+  - Navigator: {fileID: 21300000, guid: 6505a21914d549b4999fb472506aa486, type: 3}
+  - Pilot: {fileID: 21300000, guid: accf22d9f1a3be340b3aff0662fcd873, type: 3}
+  - Messenger: {fileID: 21300000, guid: 16f563ef83aa0ae468949e771f1c13f4, type: 3}
+  - Explorer: {fileID: 21300000, guid: 9aa8f3c8c73c52c4b93ff7d8619bc74d, type: 3}
+  - Diver: {fileID: 21300000, guid: 32d849711ed93804abf0c54b72bee9ee, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -15,6 +15,7 @@ MonoBehaviour:
   Default: {fileID: 21300000, guid: 8b95c4fa4a18fa245a00744f4ef6f25b, type: 3}
   Flooded: {fileID: 21300000, guid: 274876cf3fef3f143a5046d11da8d18b, type: 3}
   Sunk: {fileID: 21300000, guid: 4e5089580400e5a45b3c73a4bdd9aa24, type: 3}
+  Pawn: {fileID: 21300000, guid: 16f563ef83aa0ae468949e771f1c13f4, type: 3}
   currentState: 0
   currentTreasure: 0
   playerPieceStart: 4

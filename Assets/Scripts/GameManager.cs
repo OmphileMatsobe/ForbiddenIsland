@@ -1,19 +1,31 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private TileManager tileManager;
     [SerializeField] private CardManager cardManager;
     [SerializeField] private PlayerManager playerManager;
+    [SerializeField] TMP_Text text;
     public Card card;
 
     public int playerTurn = 1;
     bool gameStarted = false;
     bool setUpCompleted = false;
 
+    public int action, actionCounter; // checks which action can be taken
+
+    public void Start()
+    {
+        StartButtonClicked();
+        Invoke("SetUp", 2f);
+
+        action = actionCounter = 0;
+    }
     public void StartButtonClicked()
     {
         tileManager.DeleteTiles();
@@ -172,4 +184,113 @@ public class GameManager : MonoBehaviour
         }
 
     }
+
+    /*
+     * 
+     * 
+     * 
+     * 
+     */
+
+    void checkIfMoveOne()
+    {
+
+    }
+
+    void checkIfShoreUPOne()
+    {
+
+    }
+
+    void checkIfGiveTreasureCardOne()
+    {
+
+    }
+
+    void checkIfGetTreasureOne()
+    {
+
+    }
+
+    void checkIfMoveTwo()
+    {
+
+    }
+
+    void checkIfShoreUPTwo()
+    {
+
+    }
+
+    void checkIfGiveTreasureCardTwo()
+    {
+
+    }
+
+    void checkIfGetTreasureTwo()
+    {
+
+    }
+
+    public void switchMove()
+    {
+        if (action == 0)
+        {
+            checkIfMoveOne();
+        }
+
+        else if (action == 4)
+        {
+            checkIfMoveTwo();
+        }
+
+        text.text = "Move";
+    }
+
+    public void switchShore()
+    {
+        if (action == 1)
+        {
+            checkIfShoreUPOne();
+        }
+
+        else if (action == 5)
+        {
+            checkIfShoreUPTwo();
+        }
+
+        text.text = "Shore Up";
+    }
+
+    public void switchGive()
+    {
+        if (action == 2)
+        {
+            checkIfGiveTreasureCardOne();
+        }
+
+        else if (action == 6)
+        {
+            checkIfGiveTreasureCardTwo();
+        }
+
+        text.text = "Give Treasure Card";
+    }
+
+    public void switchGet()
+    {
+        if (action == 3)
+        {
+            checkIfGetTreasureOne();
+        }
+
+        else if (action == 7)
+        {
+            checkIfGetTreasureTwo();
+        }
+
+        text.text = "Capture Treasure";
+    }
+
+
 }
