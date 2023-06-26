@@ -139,6 +139,8 @@ public class CardManager : MonoBehaviour
                             player1Hand[i].gameObject.transform.position = new Vector3(-1.43f, 2f, 0);
                         }
                     }
+
+
                 }
                 else if (player == 2)
                 {
@@ -257,21 +259,28 @@ public class CardManager : MonoBehaviour
         list[b] = elementA;
     }
 
-    public void RemoveFromHand(Card clickedCard, int player)
+    public void RemoveFromHand(Card clickedCard, int player, bool canClick)
     {
-        treasureDiscard.Add(clickedCard.cardInfo);
-        if (player == 1)
+        if(canClick)
         {
-            
-            player1Hand.Remove(clickedCard);
+            treasureDiscard.Add(clickedCard.cardInfo);
+            if (player == 1)
+            {
+
+                player1Hand.Remove(clickedCard);
+                gameManager.UpdateHand(clickedCard, player);
+            }
+            else if (player == 2)
+            {
+
+                player2Hand.Remove(clickedCard);
+                gameManager.UpdateHand(clickedCard, player);
+            }
         }
-        else if(player == 2)
+        else
         {
-           
-            player2Hand.Remove(clickedCard);
+
         }
-        //gameManager.UpdateHand(clickedCard, player);
     }
-
-
 }
+

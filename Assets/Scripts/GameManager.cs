@@ -12,10 +12,18 @@ public class GameManager : MonoBehaviour
     [SerializeField] private PlayerManager playerManager;
     [SerializeField] TMP_Text text;
     public Card card;
+    public Canvas handLimitCanvas;
+    public Canvas gameCanvas;
+    public bool handLimit = false;
+    public bool keysActive = true;
+
+    public GameObject player1;
+    public GameObject player2;
 
     public int playerTurn = 1;
     bool gameStarted = false;
     bool setUpCompleted = false;
+    public Pawn pawn;
 
     public int action, actionCounter; // checks which action can be taken
 
@@ -54,6 +62,7 @@ public class GameManager : MonoBehaviour
         {
             for (int i = 0; i < cardManager.player1Hand.Count; i++)
             {
+                Debug.Log("updating 1");
                 if (i == 0)
                 {
                     cardManager.player1Hand[i].gameObject.transform.position = new Vector3(-4.3f, -0.1f, 0);
@@ -88,6 +97,7 @@ public class GameManager : MonoBehaviour
         {
             for (int j = 0; j < cardManager.player2Hand.Count; j++)
             {
+                Debug.Log("updating 2");
                 if (j == 0)
                 {
                     cardManager.player2Hand[j].gameObject.transform.position = new Vector3(11.8f, -0.1f, 0);
@@ -126,14 +136,17 @@ public class GameManager : MonoBehaviour
         // if player 1 turn , else player 2 turn else startup function
         if (Input.GetKeyDown(KeyCode.F))
         {
-            //Debug.Log("pressed");
-            cardManager.DrawFloodCard();
+            if(keysActive)
+            {
+                //Debug.Log("pressed");
+                cardManager.DrawFloodCard();
+            }
+            else
+            {
+
+            }
         }
 
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            cardManager.WatersRiseDrawn();
-        }
         if(cardManager.treasureDeck.Count == 0)
         {
             cardManager.ShuffleCardDeck(cardManager.treasureDeck);
@@ -149,40 +162,48 @@ public class GameManager : MonoBehaviour
             {
                 if (Input.GetKeyDown(KeyCode.T))
                 {
-                    cardManager.DrawTreasureCard(1);
-                    playerTurn = 2;
+                    if(keysActive)
+                    {
+                        cardManager.DrawTreasureCard(1);
+                        cardManager.DrawTreasureCard(1);
+                        playerTurn = 2;
+                        
+                    }
+                    else
+                    {
+
+                    }
                 }
             }
             else if (playerTurn == 2)
             {
                 if (Input.GetKeyDown(KeyCode.T))
                 {
-                    cardManager.DrawTreasureCard(2);
-                    playerTurn = 1;
+                    if(keysActive)
+                    {
+                        cardManager.DrawTreasureCard(2);
+                        cardManager.DrawTreasureCard(2);
+                        playerTurn = 1;
+                    }
+                   
                 }
             }
         }
-        if (Input.GetKeyDown(KeyCode.Alpha0))
-        {
-            //cardManager.RemoveFromHand();
-        }
 
-        if (cardManager.player1Hand.Count == 6 || cardManager.player1Hand.Count == 7)
+        if (cardManager.player1Hand.Count == 6 || cardManager.player1Hand.Count == 7 || cardManager.player2Hand.Count == 6 || cardManager.player2Hand.Count == 7)
         {
-
-           // handLimitCanvas.gameObject.SetActive(true);
-        }
-        else if (cardManager.player2Hand.Count == 6 || cardManager.player2Hand.Count == 7)
-        {
-            
-           // handLimitCanvas.gameObject.SetActive(true);
+            keysActive = false;
+            handLimit = true;
+            handLimitCanvas.gameObject.SetActive(true);
+            gameCanvas.gameObject.SetActive(false);
         }
         else
         {
-            
-           // handLimitCanvas.gameObject.SetActive(false);
+            keysActive = true;
+            gameCanvas.gameObject.SetActive(true);
+            handLimit = false;
+            handLimitCanvas.gameObject.SetActive(false);
         }
-
     }
 
     /*

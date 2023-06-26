@@ -24,11 +24,19 @@ public class Card : MonoBehaviour
 
     private void OnMouseDown()
     {
-
-            cardManager.RemoveFromHand(this, gameManager.playerTurn); // Pass the clickedCard itself
-            gameManager.UpdateHand(this , gameManager.playerTurn);
+        if (gameManager.handLimit == true)
+        {
+            cardManager.RemoveFromHand(this, 1, true); // Pass the clickedCard itself
+            cardManager.RemoveFromHand(this, 2, true); // Pass the clickedCard itself
+            gameManager.UpdateHand(this, 2);
+            gameManager.UpdateHand(this, 1);
             gameObject.SetActive(false);
             Debug.Log("Pressed");
+        }
+        else
+        {
+
+        }
         
     }
 
